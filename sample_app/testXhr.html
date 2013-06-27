@@ -1,0 +1,68 @@
+<html>
+    <head>
+        <meta charset="utf-8">
+        <meta name="viewport" content="initial-scale=1.0, user-scalable=no">
+        <meta name="apple-mobile-web-app-capable" content="yes">
+        <meta name="apple-mobile-web-app-status-bar-style" content="black">
+        <title>voice_to_text</title>
+        <link rel="stylesheet" href="https://d10ajoocuyu32n.cloudfront.net/mobile/1.3.1/jquery.mobile-1.3.1.min.css">
+
+        <link rel="stylesheet" href="https://codiqa.com/view/88294ee7/css">
+
+        <!-- jQuery and jQuery Mobile -->
+        <script src="https://d10ajoocuyu32n.cloudfront.net/jquery-1.9.1.min.js"></script>
+        <script src="https://d10ajoocuyu32n.cloudfront.net/mobile/1.3.1/jquery.mobile-1.3.1.min.js"></script>
+
+
+    </head>
+    <body>
+        <div data-role="page" id="page1" style="width: 500px">
+            <div data-theme="a" data-role="header">
+                <h3>
+                    Test XmlHttpRequest
+                </h3>
+            </div>
+            <div data-role="content">
+                <script type="text/javascript" src="recorder.js"></script>
+                <input style="width: 95%" onclick="request()" type="button" value="Test XmlHttpRequest " />
+                <input style="width: 95%" onclick="getText()" type="button" value="Test Respose " />
+
+            </div>
+        </div>
+        <script>
+
+                    function request() {
+                        var xmlhttp = null;
+                        if (window.XMLHttpRequest) {
+                            xmlhttp = new XMLHttpRequest();
+                            if (typeof xmlhttp.overrideMimeType !== 'undefined') {
+                                xmlhttp.overrideMimeType('text/xml');
+                            }
+                        } else if (window.ActiveXObject) {
+                            xmlhttp = new ActiveXObject("Microsoft.XMLHTTP");
+                        } else {
+                            alert('Perhaps your browser does not support xmlhttprequests?');
+                        }
+                        var AttUrl = 'https://api.att.com';
+                        //var params = '';
+                        xmlhttp.open("POST", AttUrl, true);
+//                        xmlhttp.setRequestHeader("client_id", "b48fe11ee43bc1d01c0e5e0ad9ca773e");
+//                        xmlhttp.setRequestHeader("client_secret", "b55bd9b12e5b75b3");
+//                        xmlhttp.setRequestHeader("grant_type", "client_credentials");
+//                        xmlhttp.setRequestHeader("scope", "SPEECH");
+                        //xmlhttp.setRequestHeader("X-SpeechContext", "SMS");
+                        xmlhttp.send(null);
+                    }
+
+                    function getText() {
+                        xmlhttp.onreadystatechange = function() {
+                            if (xmlhttp.readyState === 4 && xmlhttp.status === 200) {
+                                alert('Error!' + xmlhttp.readyState + ',' + xmlhttp.status);
+                            } else {
+                                // wait for the call to complete
+                            }
+                        }
+                    }
+        </script>
+    </body>
+</html>
